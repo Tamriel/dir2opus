@@ -428,7 +428,7 @@ class Convert(Id3TagHandler):
                 warn('Encoding of "%s" failed.' % self.song)
                 return False
         else:
-            enc = call(['opusenc', '--comp', str(self.conf.quality)] + opts + [self.songway, self.songopus])
+            enc = call(['opusenc', '--comp', str(self.conf.quality)] + opts + [self.songwav, self.songopus])
             if enc != 0:
                 warn('Encoding of "%s" failed.' % self.songwav)
                 return False
