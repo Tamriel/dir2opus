@@ -114,7 +114,7 @@ def read_opts():
         'ape': ('mac', 'mplayer'),
         'wv':  ('wvunpack', 'mplayer'),
         'mpc': ('mpcdec', 'mplayer'),
-        'ogg': ('oggdec' 'ogg123'),
+        'ogg': ('oggdec', 'ogg123'),
         }
 
     for ext, dec in commands.items():
