@@ -1,15 +1,15 @@
 .TH DIR2OPUS 1 "2013-11-04" "dir2opus 0.12.0"
 .SH NAME
-dir2opus \- Convert MP3, WAV, and M4A files to Opus format
+dir2opus \- Convert MP3, WAV, and M4A/M4B files to Opus format
 .SH SYNOPSIS
 \fBdir2opus\fP [ options ] ( \fIfilename\fP [\fIfilename2\fP] ... || \fIdirectory\fP [\fIdirectory2\fP] ... || [\fIcdrom-device\fP] ... )
 .SH DESCRIPTION
-\fIdir2opus\fP converts MP3, M4A, WMA and WAV files to the open\-source Opus format. \fIdir2opus\fP is a python script that simply binds together mpg123, faad, and opusenc making it easier for the user to convert his/her music files. Opus files are about 15 to 20 percent smaller than MP3 files, with the same relative audio quality. \fIdir2opus\fP can be called with the \fI\-d\fP flag at the command line to convert any number of directories at once, or given MP3, M4A, WMA,
-and/or WAV filenames as arguments, \fIdir2opus\fP will convert only those files. If converting WAV, M4A or WMA files with \fI\-d\fP you must add
+\fIdir2opus\fP converts MP3, M4A, M4B, WMA and WAV files to the open\-source Opus format. \fIdir2opus\fP is a python script that simply binds together mpg123, faad, and opusenc making it easier for the user to convert his/her music files. Opus files are about 15 to 20 percent smaller than MP3 files, with the same relative audio quality. \fIdir2opus\fP can be called with the \fI\-d\fP flag at the command line to convert any number of directories at once, or given MP3, M4A, M4B, WMA,
+and/or WAV filenames as arguments, \fIdir2opus\fP will convert only those files. If converting WAV, M4A, M4B, or WMA files with \fI\-d\fP you must add
 the \fI\-w\fP, \fI\-m\fP or \fI\-W\fP command line flags respectively. These flags are not neccesary unless using \fI\-d\fP.
-Note that converting M4A files requires you to have faad installed, and converting WMA files requires mplayer.
+Note that converting M4A or M4B files requires you to have faad installed, and converting WMA files requires mplayer.
 
-Keep in mind that converting from MP3 or M4A to Opus is a conversion between two lossy formats. This is fine if you just want to free up some disk space, but if you're a hard\-core audiophile you may be disappointed. I really can't notice a difference in quality with 'naked' ears myself.
+Keep in mind that converting from MP3 or M4A/M4B to Opus is a conversion between two lossy formats. This is fine if you just want to free up some disk space, but if you're a hard\-core audiophile you may be disappointed. I really can't notice a difference in quality with 'naked' ears myself.
 
 .SS General Options
 .TP
@@ -17,7 +17,7 @@ Keep in mind that converting from MP3 or M4A to Opus is a conversion between two
 print quick usage details to the screen.
 .TP
 \fB\-d or \-\-directory\fP
-convert all MP3 files in \fIdirectory\fP. WAV and M4A files will be converted
+convert all MP3 files in \fIdirectory\fP. WAV and M4A/M4B files will be converted
 if used with the \fI\-w\fP and \fI\-m\fP command line flags. This option is for
 compatibility purposes only and does not need to be specified anymore.
 .TP
@@ -63,6 +63,10 @@ given on the command-line to Opus, using ogg123 or flac or mplayer.
 convert all M4A (MPEG-4 Audio) files found in the directories given on the
 command-line to Opus, using faad or mplayer. For decoding ALAC
 (Apple Lossless) files, 'alac-decoder' may be used.
+\fB\-B or \-\-convert-m4b\fP
+convert all M4B (MPEG-4 Audio w/ bookmarks) files found in the directories given on the
+command-line to Opus, using faad or mplayer. For decoding ALAC
+(Apple Lossless) files, 'alac-decoder' may be used.
 .TP
 \fB\-m or \-\-convert-mpc\fP
 convert all MPC (MusePack) files found in the directories given on the
@@ -87,7 +91,7 @@ command-line to Opus.
 \fB\-n or \-\-no-mp3\fP
 ingore all MP3 files found in directories given on the command-line.
 .TP
-\fB\-\-(ape|cd|flac|m4a|mp3|mpc|wma|wv)\-decoder=COMMAND\fP
+\fB\-\-(ape|cd|flac|m4a|m4b|mp3|mpc|wma|wv)\-decoder=COMMAND\fP
 Set the decoder you want to use for one filetype, e.g.: \-\-mp3-decoder=lame.
 Run dir2opus \-\-help to see the available decoders.
 .TP

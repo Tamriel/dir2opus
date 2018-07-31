@@ -46,6 +46,7 @@ __date__    = '2013-11-04'
 FILTERS = {'mp3': ('*.mp3',),
            'mpc': ('*.mpc','*.mpp', '*.mp+'),
            'm4a': ('*.aac', '*.m4a', '*.mp4'),
+           'm4b': ('*.aac', '*.m4b', '*.mp4'),
            'wma': ('*.asf', '*.wma', '*.wmf'),
            'flac': ('*.flac',),
            'ape': ('*.ape',),
@@ -94,6 +95,7 @@ def read_opts():
     parser.add_option('-A', '--convert-ape', action='store_true', help="convert all APE files found in directories.")
     parser.add_option('-f', '--convert-flac', action='store_true', help="convert all FLAC files found in directories")
     parser.add_option('-m', '--convert-m4a', action='store_true', help="convert all M4A files found in directories")
+    parser.add_option('-B', '--convert-m4b', action='store_true', help="convert all M4B files found in directories")
     parser.add_option('-M', '--convert-mpc', action='store_true', help="convert all MPC files found in directories")
     parser.add_option('-g', '--convert-ogg', action='store_true', help="convert all Ogg Vorbis files found in directories")
     parser.add_option('-w', '--convert-wav', action='store_true', help="convert all WAV files found in directories")
@@ -109,6 +111,7 @@ def read_opts():
     commands = {'mp3': ('mpg123', 'mpg321', 'lame',  'mplayer'),
         'wma': ('mplayer',),
         'm4a': ('faad', 'mplayer'),
+        'm4b': ('faad', 'mplayer'),                
         'flac': ('flac', 'ogg123', 'mplayer'),
         'cd':  ('cdparanoia', 'icedax','cdda2wav', 'mplayer'),
         'ape': ('mac', 'mplayer'),
@@ -257,6 +260,34 @@ class Id3TagHandler:
             from mutagen.m4a import M4A as MP4, error
         self.grab_common(MP4, convert, error)
 
+    def grab_m4b_tags(self):
+        '''Import MP4 tags handler, set convert and call commonGrab'''
+        convert = {'----:com.apple.iTunes:ASIN': 'asin',
+                   '----:com.apple.iTunes:MusicBrainz Album Artist Id': 'musicbrainz_albumartistid',
+                   '----:com.apple.iTunes:MusicBrainz Album Id': 'musicbrainz_albumid',
+                   '----:com.apple.iTunes:MusicBrainz Album Release Country': 'releasecountry',
+                   '----:com.apple.iTunes:MusicBrainz Album Status': 'musicbrainz_albumstatus',
+                   '----:com.apple.iTunes:MusicBrainz Album Type': 'musicbrainz_albumtype',
+                   '----:com.apple.iTunes:MusicBrainz Artist Id': 'musicbrainz_artistid',
+                   '----:com.apple.iTunes:MusicBrainz Disc Id': 'musicbrainz_discid',
+                   '----:com.apple.iTunes:MusicBrainz TRM Id': 'musicbrainz_trmid',
+                   '----:com.apple.iTunes:MusicBrainz Track Id': 'musicbrainz_trackid',
+                   '----:com.apple.iTunes:MusicIP PUID': 'musicip_puid',
+                   'aART': 'albumartist', 'cpil': 'compilation', 'cprt': 'copyright',
+                   'pcst': 'podcast', 'pgap': 'gapless', 'purl': 'podcasturl',
+                   'soaa': 'albumartistsort', 'soal': 'albumsort', 'soar': 'artistsort',
+                   'soco': 'composersort', 'sonm': 'titlesort', 'sosn': 'showsort',
+                   'trkn': 'tracknumber', 'tvsh': 'show', '\xa9ART': 'artist',
+                   '\xa9alb': 'album', '\xa9cmt': 'comment', '\xa9day': 'date',
+                   '\xa9gen': 'genre', '\xa9grp': 'grouping', '\xa9lyr': 'lyrics',
+                   '\xa9nam': 'title', '\xa9too': 'encodedby','\xa9wrt': 'composer'}
+        try:
+            from mutagen.mp4 import MP4, error
+        except ImportError:
+            from mutagen.m4b import M4B as MP4, error
+        self.grab_common(MP4, convert, error)
+
+        
     def grab_wma_tags(self):
         '''Import ASF tags handler, set convert and call commonGrab'''
         convert = {'Author': 'artist', 'Description': 'comment',
