@@ -1,24 +1,16 @@
-dir2opus: version 0.12
+### dir2opus
 
-Manifest:
- README     - You're reading it now.
- COPYING    - The License under which dir2opus is released.
- NEWS       - Changes between the versions
- install.sh - A bash script to automate installation.
- dir2opus    - The script itself.
- dir2opus.1  - The manpage for dir2opus
+dir2opus converts mp3, m4a, and wav files to the free open source Opus format. Opus files are
+about 20-25% smaller than mp3s with the same relative sound quality. Your mileage may vary.
 
-Installation:
- (Not so) new in dir2opus is the install.sh script, which automates installation of
- the script. You should only use this if you have root access to the computer
- you are attempting to install dir2opus on. If you do not have root access then
- you will have to use dir2opus from your home directory (perhaps you have a
- /home/username/bin directory?).
+### Installation
+Install with `sudo pip2 install dir2opus` and use with `dir2opus`.
 
- To install simply run:
-  sh install.sh
+Other options for installation:   
+- Download this repo, install with `sudo sh install.sh` and use with `dir2opus`.
+- If you do not have root access: Download the file `dir2opus`. Each time you use dir2opus, call it with e.g. `python2 ~/Downloads/dir2opus`.  
 
-Requirements:
+### Requirements
  - Tag preservation: mutagen (http://www.sacredchao.net/quodlibet/wiki/Development/Mutagen)
  - M4A Conversion: faad or mplayer (ALAC: alac-decoder)
  - WMA Conversion: mplayer
@@ -27,7 +19,7 @@ Requirements:
  - Ogg Vorbis Conversion: oggdec or ogg123
  - CD Ripping: cdparanoia, icedax or mplayer
 
-Usage:
+### Usage
  Read the manpage for detailed instructions: "man dir2opus", or type "dir2opus
  --help" for brief usage details. The script is extremely simple, so you
  shouldn't have any troubles figuring it out.
@@ -44,10 +36,14 @@ Usage:
  is not well supported, and it may be better to use a different program for
  such a task.
 
-Bugs:
- See the manpage. Please report bugs at https://github.com/3M3RY/dir2opus
+### File overview
+ COPYING    - The License under which dir2opus is released.
+ NEWS       - Changes between the versions
+ install.sh - A bash script to automate installation.
+ dir2opus    - The script itself.
+ dir2opus.1  - The manpage for dir2opus
 
-License and Disclaimer:
+### License and Disclaimer
  Copyright (c) 2007-2008 Julian Andres Klode
  Copyright (c) 2003-2006 Darren Kirby
  Copyright (c) 2013      Emery Hemingway
@@ -66,15 +62,14 @@ License and Disclaimer:
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-Authors:
- Current Developer(s):
-  Emery Hemingway <emery@fuzzlabs.org>
- Inactive Developer(s):
-  Julian Andres Klode <jak@jak-linux.org>
-  Darren Kirby <d@badcomputer.org>
- Contributors:
-  Cameron Stone <camerons@cse.unsw.edu.au>
-  Marek Palatinus <marek@palatinus.cz>
+### Authors 
+Current Developer:
+- Emery Hemingway <emery@fuzzlabs.org>
 
-Date:
- November 3, 2013
+Inactive Developers:
+- Julian Andres Klode <jak@jak-linux.org>
+- Darren Kirby <d@badcomputer.org>
+
+Contributors:
+- Cameron Stone <camerons@cse.unsw.edu.au>
+- Marek Palatinus <marek@palatinus.cz>
